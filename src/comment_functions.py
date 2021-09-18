@@ -100,6 +100,10 @@ def send_from_comment(message):
     ):
         parsed_text = parsed_text[-2:]
 
+    # save comment as tip note if tip command came first
+    tip_note = ' '.join(parsed_text[2:])
+    tip_note = '\n\n' + message.author + " included the following tip note: " + tip_note if tip_note else ""
+
     # before we can do anything, check the subreddit status for generating the response
     response["subreddit"] = str(message.subreddit).lower()
     try:
@@ -214,6 +218,7 @@ def send_from_comment(message):
                 recipient_info["address"],
                 recipient_info["address"],
             )
+            + tip_note
             + text.COMMENT_FOOTER
         )
         send_pm(recipient_info["username"], subject, message_text)
@@ -230,6 +235,7 @@ def send_from_comment(message):
                     from_raw(receiving_new_balance),
                     response["hash"],
                 )
+                + tip_note
                 + text.COMMENT_FOOTER
             )
             send_pm(recipient_info["username"], subject, message_text)
