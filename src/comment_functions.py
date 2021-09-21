@@ -102,7 +102,7 @@ def send_from_comment(message):
 
     # save comment as tip note if tip command came first
     tip_note = ' '.join(parsed_text[2:])
-    tip_note = '\n\n' + message.author + " included the following tip note: " + tip_note if tip_note else ""
+    tip_note = '\n\n' + str(message.author) + " included the following tip note: " + tip_note if tip_note else ""
 
     # before we can do anything, check the subreddit status for generating the response
     response["subreddit"] = str(message.subreddit).lower()
