@@ -14,7 +14,6 @@ from text import SUBJECTS
 from tipper_rpc import generate_account, check_balance, send
 import text
 import shared
-from peewee import fn
 
 
 def add_history_record(
@@ -192,7 +191,7 @@ def get_user_settings(recipient_username, recipient_address=""):
     silence = False
     if recipient_username:
         try:
-            acct = Account.select(Account.minimum, Account.address, Account.silence).where(fn.Lower(Account.username) == recipient_username.lower()).get()
+            acct = Account.select(Account.minimum, Account.address, Account.silence).where(Account.username == recipient_username).get()
             silence = acct.silence
             if not recipient_address:
                 recipient_address = acct.address
@@ -214,7 +213,7 @@ def account_info(key, by_address=False):
     foundAccount = True
     if not by_address:
         try:
-            acct = Account.select().where(fn.Lower(Account.username) == key.lower()).get()
+            acct = Account.select().where(Account.username == key).get()
         except Account.DoesNotExist:
             foundAccount = False
     else:
@@ -244,7 +243,7 @@ def send_pm(recipient, subject, body, bypass_opt_out=False):
     # If there is not a bypass to opt in, check the status
     if not bypass_opt_out:
         try:
-            acct = Account.select(Account.opt_in).where(fn.Lower(Account.username) == recipient.lower()).get()
+            acct = Account.select(Account.opt_in).where(Account.username == recipient).get()
             opt_in = acct.opt_in
         except Account.DoesNotExist:
             pass
@@ -269,7 +268,7 @@ def parse_raw_amount(parsed_text, username=None):
     # check if the amount is 'all'. This will convert it to the proper int
     if parsed_text[1].lower() == "all":
         try:
-            acct = Account.select(Account.address).where(fn.Lower(Account.username) == username.lower()).get()
+            acct = Account.select(Account.address).where(Account.username == username).get()
             address = acct.address
             balance = check_balance(address)
             return balance
