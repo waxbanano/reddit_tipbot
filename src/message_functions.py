@@ -439,6 +439,13 @@ def handle_send(message):
 
     recipient_text = parsed_text[2]
 
+
+    potential_typos = ["ban","ban_","ban_1","ban_3","address"]
+    #Prevent monkeys from donating their bananos to u/ban, u/ban_, u/ban_3, u/ban_1 
+    if recipient_text in potential_typos:
+        response["status"] = 110
+        return response
+
     # catch invalid redditor AND address
     try:
         recipient_info = parse_recipient_username(recipient_text)
