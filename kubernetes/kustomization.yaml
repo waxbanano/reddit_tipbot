@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: reddit-bot
 resources:
 - deployment_messenger.yaml
-- deployment_tipbot.yaml
+- deployment_tipbot.yaml 
