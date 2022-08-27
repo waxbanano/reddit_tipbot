@@ -7,6 +7,7 @@ from shared import (
     DEFAULT_URL,
     CURRENCY,
     WALLET_ID,
+    BPOW_KEY,
     RandomUtil,
     Validators
 )
@@ -43,6 +44,8 @@ def send(origin, amount, destination):
         "destination": destination,
         "amount": amount
     }
+    if BPOW_KEY is not None:
+        req["bpow_key"] = BPOW_KEY
     return perform_curl(req)
 
 def check_balance(account, amount=None, URL=None):

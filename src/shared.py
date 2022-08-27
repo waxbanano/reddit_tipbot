@@ -41,6 +41,7 @@ try:
 
     DEFAULT_URL = config["NODE"]["default_url"]
     WALLET_ID = config["NODE"]["wallet_id"]
+    BPOW_KEY = config["NODE"]["bpow_key"]
 
     USE_SQLITE = config["SQL"]["use_sqlite"] == 'True'
     DATABASE_HOST = config["SQL"]["database_host"]
@@ -64,6 +65,7 @@ except KeyError as e:
     MESSENGER_OPTIONS = ""
     CURRENCY = "Nano"
     WALLET_ID = config["NODE"]["wallet_id"]
+    BPOW_KEY = config["NODE"]["bpow_key"]
     USE_SQLITE = True
 
 if USE_SQLITE:
