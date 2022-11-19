@@ -1,4 +1,4 @@
-# Banano Reddit Tipbot 1.0
+# Banano Reddit Tipbot 1.00
 
 is a reddit tipping service to easily give Banano to your favorite redditors! [Banano](https://banano.cc) is a feeless, instant, rich in potassium cryptocurrency. Before using Banano Tipper, please take a look at the [Terms of Service](https://github.com/BananoCoin/banano_reddit_tipbot#terms-of-service)
 
