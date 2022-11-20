@@ -4,7 +4,7 @@ import configparser
 import praw
 import logging
 import sys
-import secrets
+import s
 import string
 import re
 from decimal import Decimal, getcontext
@@ -85,7 +85,7 @@ class RandomUtil(object):
     @staticmethod
     def generate_seed() -> str:
         """Generate a random seed and return it"""
-        seed = "".join([secrets.choice(string.hexdigits) for i in range(64)]).upper()
+        seed = "".join([s.choice(string.hexdigits) for i in range(64)]).upper()
         return seed
 
 class NumberUtil(object):
